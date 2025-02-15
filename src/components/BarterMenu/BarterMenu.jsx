@@ -39,7 +39,7 @@ const BarterMenu = ({ linkActive }) => {
           <ul>
             MENU
             {links.map((link, i) => (
-              <Link to={`/${link.name}`}>
+              <Link key={link.id || i} to={`/${link.name}`}>
                 <li
                   key={link.name + i}
                   className={`${linkActive == link.name ? "active" : ""}`}
@@ -54,7 +54,7 @@ const BarterMenu = ({ linkActive }) => {
             ))}
           </ul>
 
-          <ul style={{ marginTop: "60px" }}>
+          <ul className="settings-mt">
             PREFERENCES
             <Link to={"/settings"}>
               <li className={`${linkActive == "settings" ? "active" : ""}`}>
@@ -64,7 +64,7 @@ const BarterMenu = ({ linkActive }) => {
             </Link>
           </ul>
 
-          <ul style={{ marginTop: "360px" }}>
+          <ul className="logout-mt">
             <li
               onClick={() => {
                 localStorage.removeItem("token");

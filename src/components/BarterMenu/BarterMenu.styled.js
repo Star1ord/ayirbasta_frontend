@@ -7,13 +7,46 @@ export default styled.div`
     background-color: #fff;
     padding: 30px;
 
-    @media screen and (max-width: 1024px) {
-      width: 220px;
+    & .settings-mt {
+      margin-top: 60px;
+    }
+
+    & .logout-mt {
+      margin-top: 360px;
+    }
+
+    @media screen and (max-width: 768px) {
+      width: auto;
+      height: auto;
+      padding: 20px;
+
+      & .settings-mt {
+        margin-top: 0px;
+
+        @media screen and (max-width: 768px) {
+          // flex-direction: column;
+        }
+      }
+
+      & .logout-mt {
+        margin-top: 20px;
+
+        @media screen and (max-width: 768px) {
+          margin-bottom: 0;
+        }
+      }
     }
 
     &-main {
       display: flex;
       flex-direction: column;
+
+      @media screen and (max-width: 768px) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        flex-direction: column;
+      }
     }
 
     ul {
@@ -23,14 +56,21 @@ export default styled.div`
       flex-direction: column;
       gap: 30px;
 
+      @media screen and (max-width: 768px) {
+        flex-direction: row;
+        gap: 20px;
+        align-items: center;
+
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
       li {
         display: flex;
         gap: 17px;
         align-items: center;
-
         color: #596780;
         cursor: pointer;
-
         text-transform: uppercase;
 
         p {

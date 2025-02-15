@@ -22,9 +22,7 @@ const OffersNearby = () => {
       </div>
 
       <div className="map-and-block-container">
-        <div className="map-pic-geo">
-          <Map />
-        </div>
+        <div className="map-pic-geo">{/* <Map /> */}</div>
 
         <div className="right-block">
           <div className="right-block-header">

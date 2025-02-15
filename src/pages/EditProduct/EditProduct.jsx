@@ -1,7 +1,6 @@
 import apiClient from "api/apiClient";
 import BarterMenu from "components/BarterMenu";
 import Header from "components/Header";
-import AddressInput from "components/Map/AddressInput";
 import { AuthContext } from "context/AuthContext";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";

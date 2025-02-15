@@ -1,70 +1,117 @@
-# Getting Started with Create React App
+Project Structure (Frontend)
+ayirbasta_front_react/
+├── src/
+│ ├── api/
+│ │ └── api.js # Axios instance for API calls
+│ ├── assets/ # Static assets (images, icons, etc.)
+│ ├── components/
+│ │ ├── Action/
+│ │ ├── Barter/
+│ │ ├── BarterMenu/
+│ │ ├── Button/
+│ │ ├── CardVariant/
+│ │ ├── Footer/
+│ │ ├── Header/
+│ │ ├── Item/
+│ │ ├── Offer/
+│ │ ├── OffersNearby/
+│ │ ├── Pagination/
+│ │ ├── ProductOffers/
+│ │ ├── ProductsAndService/
+│ │ └── SecondBarter/
+│ ├── containers/ # Higher-level components managing state and logic
+│ ├── context/
+│ │ └── AuthContext.js # Manages user authentication state
+│ ├── pages/
+│ │ ├── AddOffer/
+│ │ ├── BartersPage/
+│ │ ├── BartersPageInfo/
+│ │ ├── Chat/
+│ │ ├── EditProduct/
+│ │ ├── LikedItems/
+│ │ ├── Login/
+│ │ ├── Offers/
+│ │ ├── ProductPage/
+│ │ ├── Products/
+│ │ ├── Registration/
+│ │ └── Settings/
+│ ├── scss/ # Global SCSS styles
+│ ├── store/ # State management logic
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+│ ├── utils/ # Utility functions
+│ ├── App.js # Main React component
+│ └── index.js # Entry point
+└── package.json # Project dependencies
 
-## Available Scripts
+The MERN stack—comprising MongoDB, Express, React, and Node.js—was chosen for the Ayirbasta project for the following reasons:
 
-In the project directory, you can run:
+• MongoDB: A flexible, document-oriented database that allows for dynamic schemas, making it perfect for handling complex data structures such as user items and trades.
+• Express.js: A minimal and flexible Node.js web framework that simplifies server-side development, allowing for efficient routing, middleware integration, and RESTful API creation.
+• React: A powerful, component-based JavaScript library that facilitates building interactive and responsive user interfaces, providing a seamless user experience.
+• Node.js: A fast, event-driven runtime environment that enables server-side JavaScript execution, making it ideal for building scalable and real-time applications.
 
-### `npm start`
+This combination (MERN) allows for full-stack JavaScript development, enabling smoother data flow and better developer productivity with a single language across both frontend and backend.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Project Overview
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+   1. Ayirbasta is a frontend application that allows users to:
+      • Register and Login into the system.
+      • List and manage offers (products/services they want to exchange).
+      • Initiate and receive barters (trades) with other users.
+      • Edit their profile settings (e.g., personal details, profile image).
+      The application aims to facilitate item/service exchange among users in a user-friendly and secure manner.
+      1.1 Key Features
+   2. User Authentication
+      o Login: Existing users can sign in.
+      o Registration: New users can create an account with their email, password, and personal details.
+   3. Offers Management
+      o Offers Page: Displays a user’s active offers (items/services) and allows them to add new offers.
+      o Add Offer: A dedicated page with a form for creating new offers, including file uploads (images).
+   4. Barters (Trades)
+      o Barters Page: Shows trades initiated by the user or to the user.
+      o Trade Details: Each trade can be opened to view or finalize the exchange.
+   5. Profile Settings
+      o Settings Page: Lets users update their first name, last name, email, city, and upload a profile image.
+      1.2 Motivation
+      The motivation behind Ayirbasta is to create a platform where people can swap items without a direct monetary exchange. Whether it’s used electronics, fashion items, or services, users can easily post, browse, and negotiate trades.
 
-### `npm test`
+2. Architecture & Technologies
+   2.1 High-Level Architecture
+   Ayirbasta is built using React for the frontend and consumes backend REST APIs. The main technologies include:
+   • React (version 18.x) for the UI.
+   • React Router (version 6.x) for client-side routing.
+   • Context API for global authentication state.
+   • Axios for HTTP requests (encapsulated in a dedicated apiClient module).
+   • styled-components for component-based styling.
+   • Jest and React Testing Library for testing.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Testing Approach
+   All tests use Jest and React Testing Library. Key points:
 
-### `npm run build`
+   1. Login Tests:
+      o Checks redirect if token is present.
+      o Verifies the form renders if token is absent.
+      o Mocks apiClient.post and ensures localStorage + navigation on successful login.
+   2. Registration Tests:
+      o Redirect if already logged in.
+      o Check rendering of input fields and correct API call on submit.
+      o Ensures navigation to /login on successful response.
+   3. Offers Tests:
+      o Mocks apiClient.get to confirm offers are displayed or an empty message shows.
+      o Verifies an "ADD OFFER" button is rendered.
+   4. AddOffer Tests:
+      o Checks form fields (category, name, description, image).
+      o Mocks apiClient.post to ensure submission logic works and navigates afterward.
+   5. BartersPage Tests:
+      o Mocks /v1/users/trades.
+      o Verifies "Trades to you" and "Trades from you" sections appear.
+      o Checks empty state message if no trades are present.
+   6. Settings Tests:
+      o Mocks fetching user data for the profile.
+      o Confirms the form is populated.
+      o Mocks a PATCH request and checks success/failure alerts.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+4. Clone the repository
+   1. git clone https://github.com/Asanalii/ayirbasta_frontend cd ayirbasta_front_react
+   2. Install dependencies npm install or yarn install
+   3. npm run dev or yarn dev

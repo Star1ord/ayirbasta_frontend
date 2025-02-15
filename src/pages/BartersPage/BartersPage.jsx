@@ -69,7 +69,7 @@ function BartersPage() {
             ) : (
               <div className="empty">
                 <img src={card} alt="" />
-                <p>You still haven't added a product/service to exchange.</p>
+                <p>You still haven't added a product or service to exchange.</p>
               </div>
             )}
 
